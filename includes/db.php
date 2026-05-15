@@ -1,35 +1,26 @@
 <?php
 # anmol singh
-# database connection file for the quiz app
+# database connection for render + aiven mysql
 
-# database host, usually localhost for AMPPS or XAMPP
-$host = "localhost";
-
-# database name used by the quiz app
-$dbname = "quiz_app";
-
-# MySQL username
-$user = "root";
-
-# AMPPS usually uses mysql as the root password
-# If you use XAMPP, this may need to be changed to an empty string: ""
-$pass = "mysql";
+$host = "mysql-1fff6c78-quiz-app.k.aivencloud.com";
+$port = "22081";
+$dbname = "defaultdb";
+$user = "avnadmin";
+$pass = "AVNS_zVle5yU7BdHZPXIs1hb";
 
 try {
 
-    # create a PDO database connection
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+        "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8mb4",
         $user,
         $pass
     );
 
-    # show database errors clearly while testing
+    # enable errors
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
 
-    # stop the page if the database connection fails
     die("Database connection failed: " . $e->getMessage());
 }
 ?>
